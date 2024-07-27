@@ -1,6 +1,6 @@
 package dev.aniket.MovieHub_API.service;
 
-import dev.aniket.MovieHub_API.exception.CastNotFoundException;
+import dev.aniket.MovieHub_API.exception.NotFoundException;
 import dev.aniket.MovieHub_API.model.Cast;
 import dev.aniket.MovieHub_API.model.CastDto;
 import dev.aniket.MovieHub_API.model.Movie;
@@ -25,7 +25,7 @@ public class CastService {
         Optional<Cast> cast = castRepository.findById(castId);
 
         if (cast.isEmpty()) {
-            throw new CastNotFoundException("The given id is not match any cast..!");
+            throw new NotFoundException("The given id is not match any cast..!");
         }
         return cast.get();
     }
@@ -34,7 +34,7 @@ public class CastService {
         Optional<Cast> cast = castRepository.findById(castId);
 
         if (cast.isEmpty()) {
-            throw new CastNotFoundException("The given id does not match any cast member.");
+            throw new NotFoundException("The given id does not match any cast member.");
         }
 
         CastDto castDto = new CastDto();
@@ -93,7 +93,7 @@ public class CastService {
         Optional<Cast> cast = castRepository.findByCastName(castName);
 
         if (cast.isEmpty()) {
-            throw new CastNotFoundException("The given name does not match any cast member");
+            throw new NotFoundException("The given name does not match any cast member");
         }
 
         CastDto castDto = new CastDto();

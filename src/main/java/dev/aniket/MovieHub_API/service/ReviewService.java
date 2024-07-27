@@ -1,7 +1,6 @@
 package dev.aniket.MovieHub_API.service;
 
-import dev.aniket.MovieHub_API.exception.ReviewNotFoundException;
-import dev.aniket.MovieHub_API.exception.ReviewsAreNotExistException;
+import dev.aniket.MovieHub_API.exception.NotFoundException;
 import dev.aniket.MovieHub_API.model.Movie;
 import dev.aniket.MovieHub_API.model.Review;
 import dev.aniket.MovieHub_API.repository.ReviewRepository;
@@ -47,7 +46,7 @@ public class ReviewService {
     public Review updateReview(Long reviewId, Review review) {
         //first if the reviewId is present on the db
         if (reviewRepository.findById(reviewId).isEmpty()) {
-            throw new ReviewNotFoundException("Are you trying to find the review by its reviewId? It appears the review was not found.");
+            throw new NotFoundException("Are you trying to find the review by its reviewId? It appears the review was not found.");
         }
         review.setReviewId(reviewId);
         return reviewRepository.save(review);
@@ -55,7 +54,7 @@ public class ReviewService {
 
     public void deleteReviewById(Long reviewId) {
         if (reviewRepository.findById(reviewId).isEmpty()) {
-            throw new ReviewNotFoundException("Are you trying to find the review by its reviewId? It appears the review was not found.");
+            throw new NotFoundException("Are you trying to find the review by its reviewId? It appears the review was not found.");
         }
         reviewRepository.deleteById(reviewId);
     }
@@ -65,7 +64,7 @@ public class ReviewService {
 
         //check the review are present or not
         if (reviews == null) {
-            throw new ReviewsAreNotExistException("Oops!, This movie are not review");
+            throw new NotFoundException("Oops!, This movie are not review");
         }
         //return the reviews
         return reviews;

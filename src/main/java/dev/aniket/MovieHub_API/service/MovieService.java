@@ -1,7 +1,6 @@
 package dev.aniket.MovieHub_API.service;
 
-import dev.aniket.MovieHub_API.exception.MovieNotFoundException;
-import dev.aniket.MovieHub_API.exception.SearchNotFoundException;
+import dev.aniket.MovieHub_API.exception.NotFoundException;
 import dev.aniket.MovieHub_API.model.Cast;
 import dev.aniket.MovieHub_API.model.Movie;
 import dev.aniket.MovieHub_API.model.Review;
@@ -31,7 +30,7 @@ public class MovieService {
         Optional<Movie> movie = movieRepository.findById(movieId);
 
         if (movie.isEmpty()) {
-            throw new MovieNotFoundException("Are you trying to find the movie by its movieId? It appears the movie was not found.");
+            throw new NotFoundException("Are you trying to find the movie by its movieId? It appears the movie was not found.");
         }
 
         return movie.get();
@@ -41,7 +40,7 @@ public class MovieService {
         Optional<Movie> movie = movieRepository.findByTitle(title);
 
         if (movie.isEmpty()) {
-            throw new MovieNotFoundException("Are you trying to find the movie by its title? It appears the movie was not found.");
+            throw new NotFoundException("Are you trying to find the movie by its title? It appears the movie was not found.");
         }
 
         return movie.get();
@@ -102,7 +101,7 @@ public class MovieService {
             );
 
         if (movies.isEmpty()) {
-            throw new SearchNotFoundException("No matches were found for your search");
+            throw new NotFoundException("No matches were found for your search");
         }
 
         return movies;

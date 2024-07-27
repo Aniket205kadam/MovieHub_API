@@ -2,6 +2,7 @@ package dev.aniket.MovieHub_API.controller;
 
 import dev.aniket.MovieHub_API.model.Movie;
 import dev.aniket.MovieHub_API.service.MovieService;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@NoArgsConstructor
 @RestController
 @RequestMapping("/api/v1/movies")
 public class MovieController {
